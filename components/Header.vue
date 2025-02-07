@@ -83,6 +83,9 @@ export default {
   methods: {
     handleSelect(index) {
       this.activeIndex = index;
+      if (this.isMobile) {
+        this.isMobileMenuOpen = false;
+      }
     },
     handleSearch() {
       this.$router.push({ path: '/search', query: { q: this.searchQuery } });
