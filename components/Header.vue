@@ -7,12 +7,18 @@
             <img src="@/assets/logo.png" alt="品牌LOGO" class="logo-img" />
             </nuxt-link>
 
+            <!-- 移动端菜单按钮 -->
+            <el-button class="mobile-menu-button" type="text" @click="toggleMobileMenu">
+            <i class="el-icon-menu"></i>
+            </el-button>
+
             <!-- 主导航 -->
-            <nav class="nav">
+            <nav class="nav" :class="{ 'mobile-menu-open': isMobileMenuOpen }">
             <el-menu
                 mode="horizontal"
                 :default-active="activeIndex"
                 @select="handleSelect"
+                :collapse="isMobile"
             >
                 <el-menu-item index="1"><nuxt-link to="/">首 页</nuxt-link></el-menu-item>
                 <el-menu-item index="2"><nuxt-link to="/about">关于我们</nuxt-link></el-menu-item>
@@ -23,7 +29,7 @@
             </nav>
 
             <!-- 搜索框 -->
-            <div class="search">
+            <div class="search" :class="{ 'mobile-search': isMobile }">
             <el-input
                 v-model="searchQuery"
                 placeholder="请输入关键词"
@@ -34,7 +40,7 @@
             </div>
 
             <!-- 用户操作 -->
-            <div class="user-actions">
+            <div class="user-actions" :class="{ 'mobile-user-actions': isMobile }">
             <el-dropdown v-if="isLoggedIn" trigger="click">
                 <span class="el-dropdown-link">
                 <el-avatar :src="userAvatar" />
@@ -63,7 +69,16 @@ export default {
       isLoggedIn: false,
       userAvatar: '',
       cartCount: 0,
+      isMobile: false,
+      isMobileMenuOpen: false,
     };
+  },
+  mounted() {
+    this.checkMobile();
+    window.addEventListener('resize', this.checkMobile);
+  },
+  beforeDestroy() {
+    window.removeEventListener('resize', this.checkMobile);
   },
   methods: {
     handleSelect(index) {
@@ -80,6 +95,12 @@ export default {
     },
     handleCart() {
       this.$router.push('/cart');
+    },
+    checkMobile() {
+      this.isMobile = window.innerWidth <= 768;
+    },
+    toggleMobileMenu() {
+      this.isMobileMenuOpen = !this.isMobileMenuOpen;
     },
   },
 };
@@ -169,5 +190,45 @@ export default {
 
 .cart-icon .el-badge__content {
   background-color: var(--secondary-color);
+}
+
+/* 移动端样式 */
+.mobile-menu-button {
+  display: none;
+  margin-left: auto;
+  color: var(--light-color);
+}
+
+.mobile-menu-open {
+  display: block;
+}
+
+@media (max-width: 768px) {
+  .mobile-menu-button {
+    display: block;
+  }
+
+  .nav {
+    display: none;
+    position: absolute;
+    top: 60px;
+    left: 0;
+    right: 0;
+    background-color: var(--primary-color);
+    z-index: 1000;
+  }
+
+  .nav.mobile-menu-open {
+    display: block;
+  }
+
+  .search {
+    width: 100%;
+    margin: 10px 0;
+  }
+
+  .user-actions {
+    margin-left: 0;
+  }
 }
 </style> 
