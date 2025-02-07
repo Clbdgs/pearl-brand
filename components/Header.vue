@@ -161,6 +161,7 @@ export default {
 
 .nav .el-menu-item:hover a {
   color: var(--neutral-color);
+  text-decoration: none;
 }
 
 .search {

@@ -31,7 +31,14 @@ export default {
     BlogCard,
     CommentSection,
   },
+  data() {
+    return {
+      relatedBlogs: [],
+      blog: {},
+    };
+  },
   async asyncData({ params }) {
+    console.log('params', params);
     // const { data: blog } = await $axios.get(`/api/blogs/${params.id}`);
     // const { data: relatedBlogs } = await $axios.get('/api/blogs', { params: { related: params.id } });
     const blog = {
@@ -53,7 +60,7 @@ export default {
         author: '潮流观察员',
         views: 987,
         likes: 34,
-        content: '解析本季最in的珍珠设计...',
+        content: '不错呀.',
         image: require('@/assets/banner1.png')
       },
       {
@@ -63,7 +70,7 @@ export default {
         author: '品牌小编',
         views: 1567,
         likes: 78,
-        content: '带你回顾最新产品发布盛况...',
+        content: '不错呀',
         image: require('@/assets/banner1.png')
       }
     ];

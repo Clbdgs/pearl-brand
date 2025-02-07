@@ -2,7 +2,16 @@
   <div class="blog-page">
     <!-- 搜索 & 筛选 -->
     <div class="filters">
-      <el-input v-model="searchQuery" placeholder="请输入关键词" @keyup.enter="handleSearch" />
+      <div class="search-box">
+        <el-input
+          v-model="searchQuery"
+          placeholder="请输入关键词"
+          @keyup.enter="handleSearch"
+          class="search-input"
+        >
+          <el-button slot="append" icon="el-icon-search" @click="handleSearch" />
+        </el-input>
+      </div>
       <el-select v-model="selectedCategory" placeholder="选择分类" @change="handleCategoryChange">
         <el-option v-for="category in categories" :key="category" :label="category" :value="category" />
       </el-select>
@@ -36,11 +45,10 @@ export default {
     };
   },
   async asyncData({ $axios }) {
-    console.log('asyncData', $axios);
     return {
       blogs: [
         {
-          id: 1,
+          id: '1',
           title: '珍珠搭配指南：打造时尚造型',
           date: '2023-10-01',
           author: '时尚达人',
@@ -51,7 +59,7 @@ export default {
           image: require('@/assets/banner1.png')
         },
         {
-          id: 2,
+          id: '2',
           title: '2023秋季珍珠潮流趋势',
           date: '2023-09-25',
           author: '潮流观察员',
@@ -62,7 +70,7 @@ export default {
           image: require('@/assets/banner1.png')
         },
         {
-          id: 3,
+          id: '3',
           title: '品牌新品发布会回顾',
           date: '2023-09-20',
           author: '品牌小编',
@@ -107,4 +115,34 @@ export default {
   grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
   gap: 20px;
 }
+
+.search-box {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.search-input:hover {
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); /* 添加阴影效果 */
+}
+
+.search-input:focus-within {
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.2); /* 聚焦时加深阴影 */
+}
+
+.search-input .el-input__inner {
+  border-radius: 20px; /* 添加圆角 */
+  padding: 10px 20px; /* 调整内边距 */
+}
+
+.search-input .el-button {
+  border-radius: 0 20px 20px 0; /* 按钮圆角 */
+  background-color: var(--primary-color);
+  color: var(--light-color);
+}
+
+.search-input .el-button:hover {
+  background-color: var(--secondary-color);
+}
+
 </style> 

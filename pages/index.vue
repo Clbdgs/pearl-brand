@@ -1,5 +1,16 @@
 <template>
-  <div>
+  <div class="index-page">
+    <!-- 搜索框 -->
+    <div class="search-box">
+      <el-input
+        v-model="searchQuery"
+        placeholder="请输入关键词"
+        @keyup.enter="handleSearch"
+        class="search-input"
+      >
+        <el-button slot="append" icon="el-icon-search" @click="handleSearch" />
+      </el-input>
+    </div>
     <!-- 轮播图 -->
     <el-carousel height="500px" indicator-position="outside" arrow="always">
       <el-carousel-item v-for="item in banners" :key="item.id">
@@ -96,9 +107,55 @@ const testimonials = ref([
   { id: 1, text: '这款珍珠项链真的太棒了，质量非常好，设计也很独特！', name: '李先生', avatar: require('@/assets/banner1.png') },
   { id: 2, text: '珍珠耳环非常精致，佩戴后感觉整个人都更有气质了。', name: '张女士', avatar: require('@/assets/banner1.png') }
 ]);
+
+const searchQuery = ref('');
+
+const handleSearch = () => {
+  // 处理搜索逻辑
+};
 </script>
 
 <style scoped>
+.index-page {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.search-box {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.search-input {
+  width: 400px;
+  transition: box-shadow 0.3s ease;
+}
+
+.search-input:hover {
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.search-input:focus-within {
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.2);
+}
+
+.search-input .el-input__inner {
+  border-radius: 20px;
+  padding: 10px 20px;
+}
+
+.search-input .el-button {
+  border-radius: 0 20px 20px 0;
+  background-color: var(--primary-color);
+  color: var(--light-color);
+}
+
+.search-input .el-button:hover {
+  background-color: var(--secondary-color);
+}
+
 .banner-img { width: 100%; height: 100%; object-fit: cover; }
 .banner-overlay {
   position: absolute;
