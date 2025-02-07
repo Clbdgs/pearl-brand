@@ -24,7 +24,7 @@
                 <el-menu-item index="2"><nuxt-link to="/about">关于我们</nuxt-link></el-menu-item>
                 <el-menu-item index="3"><nuxt-link to="/category">商品分类</nuxt-link></el-menu-item>
                 <el-menu-item index="4"><nuxt-link to="/blog">资讯 & 博客</nuxt-link></el-menu-item>
-                <el-menu-item index="5"><nuxt-link to="/contact">联系我们</nuxt-link></el-menu-item>
+                <el-menu-item index="5"><nuxt-link to="/contact">联系我们吧</nuxt-link></el-menu-item>
             </el-menu>
             </nav>
 
