@@ -1,16 +1,5 @@
 <template>
   <div class="index-page">
-    <!-- 搜索框 -->
-    <div class="search-box">
-      <el-input
-        v-model="searchQuery"
-        placeholder="请输入关键词"
-        @keyup.enter="handleSearch"
-        class="search-input"
-      >
-        <el-button slot="append" icon="el-icon-search" @click="handleSearch" />
-      </el-input>
-    </div>
     <!-- 轮播图 -->
     <el-carousel height="500px" indicator-position="outside" arrow="always">
       <el-carousel-item v-for="item in banners" :key="item.id">
@@ -119,7 +108,6 @@ const handleSearch = () => {
 .index-page {
   max-width: 1200px;
   margin: 0 auto;
-  padding: 20px;
 }
 
 .search-box {

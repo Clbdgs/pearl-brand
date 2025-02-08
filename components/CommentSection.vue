@@ -1,5 +1,12 @@
 <template>
   <div class="comment-section">
+    <div class="comments">
+      <div v-for="comment in comments" :key="comment.id" class="comment">
+        <span class="author">{{ comment.author }}</span>
+        <span class="date">{{ comment.date }}</span>
+        <p>{{ comment.content }}</p>
+      </div>
+    </div>
     <h2>评论</h2>
     <el-input
       v-model="newComment"
@@ -7,14 +14,7 @@
       placeholder="请输入您的评论"
       :rows="3"
     />
-    <el-button type="primary" @click="submitComment">提交评论</el-button>
-    <div class="comments">
-      <div v-for="comment in comments" :key="comment.id" class="comment">
-        <p>{{ comment.content }}</p>
-        <span class="author">{{ comment.author }}</span>
-        <span class="date">{{ comment.date }}</span>
-      </div>
-    </div>
+    <el-button class="submit-button" type="primary" @click="submitComment">提交评论</el-button>
   </div>
 </template>
 
@@ -62,5 +62,8 @@ export default {
 .date {
   color: #999;
   font-size: 12px;
+}
+.submit-button {
+  margin-top: 10px;
 }
 </style> 

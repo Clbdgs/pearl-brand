@@ -9,6 +9,8 @@
     </div>
     <div class="content" v-html="blog.content"></div>
 
+    <!-- 评论区 -->
+    <CommentSection :comments="blog.comments" @submit-comment="handleSubmitComment" />
     <!-- 相关文章推荐 -->
     <div class="related-blogs">
       <h2>相关文章</h2>
@@ -17,8 +19,6 @@
       </div>
     </div>
 
-    <!-- 评论区 -->
-    <CommentSection :comments="blog.comments" @submit-comment="handleSubmitComment" />
   </div>
 </template>
 
@@ -49,7 +49,32 @@ export default {
       views: 1234,
       likes: 56,
       content: '<p>分享珍珠首饰的搭配技巧...</p>',
-      comments: []
+      comments: [
+        {
+          id: 1,
+          author: '用户A',
+          avatar: require('@/assets/banner1.png'),
+          date: '2023-10-05',
+          content: '文章内容很有帮助，学到了很多珍珠搭配技巧！',
+          likes: 12
+        },
+        {
+          id: 2,
+          author: '用户B',
+          avatar: require('@/assets/banner2.png'),
+          date: '2023-10-06',
+          content: '感谢分享，期待更多时尚搭配指南！',
+          likes: 8
+        },
+        {
+          id: 3,
+          author: '用户C',
+          avatar: require('@/assets/banner1.png'),
+          date: '2023-10-07',
+          content: '珍珠搭配真的很提升气质，学到了！',
+          likes: 15
+        }
+      ]
     };
 
     const relatedBlogs = [

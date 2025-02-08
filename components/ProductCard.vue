@@ -9,7 +9,9 @@
         <el-rate v-model="product.rating" disabled />
         <span class="review-count">({{ product.reviews }})</span>
       </div>
-      <el-button type="primary" @click="$emit('add-to-cart', product)">加入购物车</el-button>
+      <nuxt-link :to="`/product/${product.id}`">
+        <el-button type="primary">查看详情</el-button>
+      </nuxt-link>
     </div>
   </div>
 </template>
