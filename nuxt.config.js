@@ -53,5 +53,7 @@ export default {
   build: {
     transpile: [/^element-ui/],
   },
+  target: 'server', // 服务器渲染模式
+  ssr: true, // 开启 SSR
   ...routerBase
 }
